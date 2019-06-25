@@ -26,9 +26,9 @@ def register(request):
                 pass_word=pass_word,
                 id_card=id_card
             )
+            user.save()
         except Exception:
             return JsonResponse({"result": 0})
-        user.save()
         return JsonResponse({"result": 1})
     else:
         return JsonResponse({"result": -1})
@@ -68,3 +68,32 @@ def complete_information(request):
             return JsonResponse({"result": 0})
     return JsonResponse({"result": 1})
 
+
+@csrf_exempt
+def create_course(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        course_id = request.POST.get("courseId")
+        invite_code = request.POST.get("inviteCode")
+        creator_id = request.POST.get("creatorId")
+        row = request.POST.get("rowNumber")
+        col = request.POST.get("columnNumber")
+        class_room_number = request.POST.get("classroomNumber")
+
+        try:
+            course = models.Course.objects.create(
+                course_id=course_id,
+                invite_code=invite_code,
+                name=name,
+                creator_id=creator_id,
+                row_number=row,
+                column_number=col,
+                class_room_number=class_room_number
+            )
+            course.save()
+        except Exception:
+            print()
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+    else:
+        return JsonResponse({"result": -1})
