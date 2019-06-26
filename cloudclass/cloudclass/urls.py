@@ -24,4 +24,8 @@ urlpatterns = [
     re_path(r'login/$', view.login),
     re_path(r'complete_information/$', view.complete_information),
     re_path(r'create_course/$', view.create_course),
+    re_path(r'joinCourse/$', view.joinCourse),
+    re_path(r'get_course/$', view.get_course),
+    re_path(r'create_inform/$', view.create_inform),
+    re_path(r'get_inform/$', view.get_inform),
 ]
