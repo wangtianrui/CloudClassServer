@@ -5,6 +5,7 @@ from . import models
 from django.views.decorators.csrf import csrf_exempt
 import django.db.utils
 from django.forms.models import model_to_dict
+from django.core import serializers
 
 
 # {"result": "该手机已注册"}
@@ -42,9 +43,13 @@ def login(request):
         phone = request.POST.get("phone")
         pass_word = request.POST.get("passWord")
         user = models.User.objects.filter(phone=phone)
+        user_infor = {}
         if user:
             if user.values()[0]["pass_word"] == pass_word:
-                return JsonResponse({"result": 1})
+                for key in user.values()[0]:
+                    user_infor[key] = user.values()[0][key]
+                print(user_infor)
+                return JsonResponse({"result": 1, "values": user_infor})
             else:
                 return JsonResponse({"result": 0})
         else:
@@ -173,3 +178,69 @@ def get_inform(request):
         return JsonResponse({"result": len(inform_list), "values": inform_list})
     else:
         return JsonResponse({"result": 0})
+
+
+@csrf_exempt
+def add_avatar(request):
+    if request.method == "POST":
+        avatar = request.FILES.get("avatar")
+        user_id = request.POST.get("userId")
+
+        user = models.User.objects.get(phone=user_id)
+        user.avatar = avatar
+        try:
+            user.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def add_source(request):
+    if request.method == "POST":
+        source = request.FILES.get("source")
+        course_id = request.POST.get("courseId")
+        type = request.POST.get("type")
+        uper_id = request.POST.get("uperId")
+        course = models.Course.objects.get(course_id=course_id)
+        if course:
+            try:
+                my_source = models.MySource.objects.create(
+                    source_path=source,
+                    course_id=course_id,
+                    type=type,
+                    uper_id=uper_id
+                )
+                my_source.save()
+            except Exception as e:
+                print(e)
+                return JsonResponse({"result": 0})
+            src = {
+                "source_path": "media/source/" + str(source),
+                "course_id": course_id,
+                "uper_id": uper_id,
+                "type": type
+            }
+            return JsonResponse({"result": 1, "values": src})
+        else:
+            return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def get_source(request):
+    if request.method == "POST":
+        course_id = request.POST.get("courseId")
+        sources = models.MySource.objects.filter(course_id=course_id)
+        srcs = []
+        for item in sources.values():
+            print(item)
+            temp = {}
+            for key in item:
+                temp[key] = item[key]
+            srcs.append(temp)
+        return JsonResponse({"result": len(srcs), "values": srcs})
+    else:
+        return JsonResponse({"result": -1})

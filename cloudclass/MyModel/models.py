@@ -11,9 +11,9 @@ class User(models.Model):
     type = models.IntegerField()
     class_number = models.CharField(max_length=20)
     pass_word = models.CharField(max_length=20)
-    avatar = models.CharField(max_length=100)
     academy = models.CharField(max_length=20)
     id_card = models.CharField(max_length=20)
+    avatar = models.FileField(upload_to="media", default="media/default.jpg")
 
 
 class Course(models.Model):
@@ -79,3 +79,11 @@ class Score(models.Model):
     course_id = models.CharField(max_length=20)
     student_id = models.CharField(max_length=20)
     score = models.FloatField()
+
+
+class MySource(models.Model):
+    source_path = models.FileField(upload_to="media/source")
+    course_id = models.CharField(max_length=20)
+    type = models.IntegerField()
+    uper_id = models.CharField(max_length=20)
+    download_count = models.IntegerField(default=0)

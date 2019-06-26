@@ -17,9 +17,14 @@ from django.contrib import admin
 from django.urls import path, re_path
 import MyModel.views as view
 from django.conf.urls import url, include
+from django.views.static import serve
+from cloudclass.settings import MEDIA_ROOT
+from cloudclass.settings import STATIC_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {"document_root": STATIC_ROOT}),
     re_path(r'register/$', view.register),
     re_path(r'login/$', view.login),
     re_path(r'complete_information/$', view.complete_information),
@@ -28,4 +33,8 @@ urlpatterns = [
     re_path(r'get_course/$', view.get_course),
     re_path(r'create_inform/$', view.create_inform),
     re_path(r'get_inform/$', view.get_inform),
+    re_path(r'add_avatar/$', view.add_avatar),
+    re_path(r'add_source/$', view.add_source),
+    re_path(r'get_source/$', view.get_source),
+
 ]
