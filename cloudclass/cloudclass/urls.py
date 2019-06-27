@@ -36,5 +36,11 @@ urlpatterns = [
     re_path(r'add_avatar/$', view.add_avatar),
     re_path(r'add_source/$', view.add_source),
     re_path(r'get_source/$', view.get_source),
+    re_path(r'join_course/$', view.join_course),
+    re_path(r'upSign/$', view.upSign),
+    re_path(r'studentSign/$', view.studentSign),
+    re_path(r'getSign/$', view.getSign),
+    re_path(r'getSignedStudent/$', view.getSignedStudent),
+    re_path(r'getCourseMember/$', view.getCourseMember),
 
 ]

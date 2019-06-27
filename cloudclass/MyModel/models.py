@@ -24,9 +24,9 @@ class Course(models.Model):
     row_number = models.IntegerField()
     column_number = models.IntegerField()
     class_room_number = models.CharField(max_length=20)
-    section = models.IntegerField()
-    span = models.IntegerField()
-    week = models.IntegerField()
+    section = models.IntegerField(null=True)
+    span = models.IntegerField(null=True)
+    week = models.IntegerField(null=True)
 
 
 class Student2Course(models.Model):
@@ -51,6 +51,14 @@ class HomeWork(models.Model):
     uper_id = models.CharField(max_length=20)
 
 
+class Answer(models.Model):
+    homework_id = models.CharField(max_length=50)
+    content = models.CharField(max_length=200)
+    image = models.FileField(upload_to="media/answers", null=True)
+    uper_id = models.CharField(max_length=20)
+    up_time = models.DateTimeField(auto_now_add=True)
+
+
 class Communication(models.Model):
     course_id = models.CharField(max_length=20)
     uper_id = models.CharField(max_length=20)
@@ -64,7 +72,7 @@ class CommunicaitonItem(models.Model):
 
 
 class Sign(models.Model):
-    sign_code = models.CharField(max_length=10)
+    sign_code = models.CharField(max_length=10, primary_key=True)
     up_time = models.DateTimeField(auto_now_add=True)
     course_id = models.CharField(max_length=20)
 
@@ -73,6 +81,7 @@ class StudentSign(models.Model):
     sign_id = models.CharField(max_length=20)
     up_time = models.DateTimeField(auto_now_add=True)
     student_id = models.CharField(max_length=20)
+    id = models.CharField(max_length=50, primary_key=True)
 
 
 class Score(models.Model):
@@ -87,3 +96,5 @@ class MySource(models.Model):
     type = models.IntegerField()
     uper_id = models.CharField(max_length=20)
     download_count = models.IntegerField(default=0)
+    source_name = models.CharField(max_length=100, null=True)
+    uper_name = models.CharField(max_length=20, null=True)

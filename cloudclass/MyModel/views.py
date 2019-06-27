@@ -130,16 +130,59 @@ def joinCourse(request):
 
 
 @csrf_exempt
+def join_course(request):
+    if request.method == "POST":
+        invite_code = request.POST.get("inviteCode")
+        student_id = request.POST.get("studentId")
+        try:
+            course = models.Course.objects.get(invite_code=invite_code)
+            course_id = model_to_dict(course)["course_id"]
+            item_id = student_id + course_id
+            student2course = models.Student2Course.objects.create(
+                student_id=student_id,
+                course_id=course_id,
+                id=item_id
+            )
+            student2course.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
 def get_course(request):
     if request.method == "POST":
         user_id = request.POST.get("userId")
         courses = models.Student2Course.objects.filter(student_id=user_id)
         values = []
         for item in courses:
-            values.append(model_to_dict(item))
+            values.append(model_to_dict(models.Course.objects.get(course_id=model_to_dict(item)["course_id"])))
         return JsonResponse({"result": len(values), "values": values})
     else:
         return JsonResponse({"result": 0})
+
+
+@csrf_exempt
+def getCourseMember(request):
+    if request.method == "POST":
+        course_id = request.POST.get("courseId")
+
+        student2courses = models.Student2Course.objects.filter(course_id=course_id)
+        values = []
+        for item in student2courses.values():
+            student = models.User.objects.filter(phone=item["student_id"])
+            temp = {}
+            if student.values()[0]["type"] == 1:
+                continue
+            for key in student.values()[0]:
+                temp[key] = student.values()[0][key]
+            values.append(temp)
+        return JsonResponse({"result": len(values), "values": values})
+    else:
+        return JsonResponse({"result": -1})
 
 
 @csrf_exempt
@@ -205,6 +248,8 @@ def add_source(request):
         course_id = request.POST.get("courseId")
         type = request.POST.get("type")
         uper_id = request.POST.get("uperId")
+        source_name = request.POST.get("sourceName")
+        uper_name = request.POST.get("uperName")
         course = models.Course.objects.get(course_id=course_id)
         if course:
             try:
@@ -212,7 +257,9 @@ def add_source(request):
                     source_path=source,
                     course_id=course_id,
                     type=type,
-                    uper_id=uper_id
+                    uper_id=uper_id,
+                    source_name=source_name,
+                    uper_name=uper_name
                 )
                 my_source.save()
             except Exception as e:
@@ -234,6 +281,7 @@ def get_source(request):
     if request.method == "POST":
         course_id = request.POST.get("courseId")
         sources = models.MySource.objects.filter(course_id=course_id)
+
         srcs = []
         for item in sources.values():
             print(item)
@@ -242,5 +290,93 @@ def get_source(request):
                 temp[key] = item[key]
             srcs.append(temp)
         return JsonResponse({"result": len(srcs), "values": srcs})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def upSign(request):
+    if request.method == "POST":
+        course_id = request.POST.get("courseId")
+        sign_code = request.POST.get("signCode")
+
+        try:
+            sign = models.Sign.objects.create(
+                course_id=course_id,
+                sign_code=sign_code
+            )
+            sign.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def studentSign(request):
+    if request.method == "POST":
+        sign_code = request.POST.get("signCode")
+        student_id = request.POST.get("studentId")
+        id = sign_code + student_id
+        sign = models.Sign.objects.filter(sign_code=sign_code)
+        if sign:
+            try:
+                studentsign = models.StudentSign.objects.create(
+                    sign_id=sign_code,
+                    student_id=student_id,
+                    id=id
+                )
+                studentsign.save()
+            except Exception as e:
+                print(e)
+                return JsonResponse({"result": 0})
+            return JsonResponse({"result": 1})
+        else:
+            return JsonResponse({"result": -2})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def getSign(request):
+    if request.method == "POST":
+        course_id = request.POST.get("courseId")
+
+        try:
+            signs = models.Sign.objects.filter(course_id=course_id)
+            values = []
+            for item in signs:
+                temp = model_to_dict(item)
+                temp["up_time"] = item.up_time
+                values.append(temp)
+
+            return JsonResponse({"result": len(values), "values": values})
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def getSignedStudent(request):
+    if request.method == "POST":
+        sign_code = request.POST.get("signCode")
+
+        try:
+            studentsigns = models.StudentSign.objects.filter(sign_id=sign_code)
+            values = []
+            for item in studentsigns:
+                student = models.User.objects.filter(phone=item.student_id)
+                temp = {}
+                for key in student.values()[0]:
+                    temp[key] = student.values()[0][key]
+                values.append(temp)
+            return JsonResponse({"result": len(values), "values": values})
+        except Exception as e:
+            print(e)
+        return JsonResponse({"result": 0})
     else:
         return JsonResponse({"result": -1})
