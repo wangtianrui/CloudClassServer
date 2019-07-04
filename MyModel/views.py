@@ -621,3 +621,207 @@ def get_mean_score(request):
         return JsonResponse({"result": 1, "values": sum / num})
     else:
         return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def add_courseTable(request):
+    if request.method == "POST":
+        # id = request.POST.get("id")
+        section = request.POST.get("section")
+        week = request.POST.get("week")
+        span = request.POST.get("span")
+        user_id = request.POST.get("userId")
+        course_name = request.POST.get("courseName")
+        classroom_number = request.POST.get("classroomNumber")
+        id = user_id + week + section
+        try:
+            coursemodel = models.CourseModel.objects.create(
+                id=id,
+                section=section,
+                week=week,
+                span=span,
+                user_id=user_id,
+                course_name=course_name,
+                classroom_number=classroom_number
+            )
+            coursemodel.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def get_courseTable(request):
+    if request.method == "POST":
+        user_id = request.POST.get("userId")
+        courses = models.CourseModel.objects.filter(user_id=user_id).values()
+        values = []
+        for item in courses:
+            # print(item)
+            values.append(item)
+            # print(values)
+        return JsonResponse({"result": len(values), "values": values})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def deleteCourseTable(request):
+    if request.method == "POST":
+        id = request.POST.get("id")
+        course = models.CourseModel.objects.get(id=id)
+        if course:
+            course.delete()
+            return JsonResponse({"result": 1})
+        else:
+            return JsonResponse({"result": 0})
+
+
+@csrf_exempt
+def addPower(request):
+    if request.method == "POST":
+        student_id = request.POST.get("studentId")
+        level = request.POST.get("level")
+        status = request.POST.get("status")
+        time = request.POST.get("time")
+        course_id = request.POST.get("courseId")
+
+        try:
+            power = models.Power.objects.create(
+                student_id=student_id,
+                level=level,
+                status=status,
+                time=time,
+                course_id=course_id
+            )
+            power.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def getPower(request):
+    if request.method == "POST":
+        course_id = request.POST.get("courseId")
+        time = request.POST.get("time")
+
+        powers = models.Power.objects.filter(course_id=course_id).values()
+
+        values = []
+        for item in powers:
+            if int(item["time"]) >= int(int(time) - 2):
+                student_id = item["student_id"]
+                student = models.User.objects.filter(phone=student_id).values()[0]
+                item["student_name"] = student["name"]
+                item["id_card"] = student["id_card"]
+                values.append(item)
+        levels = {}
+        for item in values:
+            levels[item["student_id"]] = ""
+        for item in values:
+            levels[item["student_id"]] += (str(item["level"]) + ";")
+        re_values = []
+        ids = []
+        for item in values:
+            if item["student_id"] not in ids:
+                item["level"] = levels[item["student_id"]]
+                ids.append(item["student_id"])
+                re_values.append(item)
+        return JsonResponse({"result": len(re_values), "values": re_values})
+    else:
+        return JsonResponse({"result": -1})
+
+
+@csrf_exempt
+def autoSeat(request):
+    if request.method == "POST":
+        course_id = request.POST.get("courseId")
+
+        course = models.Course.objects.filter(course_id=course_id).values()[0]
+
+        max_col = course["column_number"]
+        max_row = course["row_number"]
+
+        student_id = models.Student2Course.objects.filter(course_id=course_id).values()
+        student_ids = []
+        for item in student_id:
+            student_ids.append(item["student_id"])
+        scores = {}
+        for item in student_ids:
+            scores[item] = getMeanScore(item)
+        L = list(scores.items())
+        L.sort(key=lambda x: x[1], reverse=False)
+        i = 0
+        j = len(L) - 1
+        flag = True
+        for col in range( max_col):
+            for row in range( max_row):
+                if i > j:
+                    break
+                try:
+                    if flag:
+                        studentId = L[i][0]
+                        i += 1
+                        seat = models.Seat.objects.create(
+                            id=studentId + course_id,
+                            row=row,
+                            col=col,
+                            courseId=course_id,
+                            studentId=studentId
+                        )
+                        flag = (not flag)
+                    else:
+                        studentId = L[j][0]
+                        j -= 1
+                        seat = models.Seat.objects.create(
+                            id=studentId + course_id,
+                            row=row,
+                            col=col,
+                            courseId=course_id,
+                            studentId=studentId
+                        )
+                        flag = (not flag)
+                    seat.save()
+
+                except Exception as e:
+                    print(e)
+                    seat = models.Seat.objects.get(id=studentId + course_id)
+                    seat.row = row
+                    seat.col = col
+                    seat.save()
+        return JsonResponse({"result": 1})
+
+
+@csrf_exempt
+def getSeat(request):
+    if request.method == "POST":
+        student_id = request.POST.get("studentId")
+        course_id = request.POST.get("courseId")
+        id = student_id + course_id
+        try:
+            seat = models.Seat.objects.filter(id=id).values()[0]
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1, "values": seat})
+
+
+def getMeanScore(id):
+    num = 0.0
+    sum = 0.0
+    scores_list = models.Score.objects.filter(student_id=id)
+    for item in scores_list:
+        sum += item.score
+        num += 1.0
+        print(sum)
+        print(num)
+    if num == 0:
+        num = 1
+    return sum / num

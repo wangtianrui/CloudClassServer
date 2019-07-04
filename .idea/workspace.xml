@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca068843-1983-4f85-9686-0114ca6f18ec" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudclass/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/cloudclass/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyModel/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyModel/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyModel/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyModel/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudclass/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cloudclass/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,7 +44,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="756">
               <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
             </state>
           </provider>
@@ -52,8 +53,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyModel/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="618" column="20" lean-forward="true" selection-start-line="618" selection-start-column="20" selection-end-line="618" selection-end-column="20" />
+            <state relative-caret-position="335">
+              <caret line="763" column="25" selection-start-line="763" selection-start-column="25" selection-end-line="763" selection-end-column="25" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -61,32 +62,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="true" current-in-tab="false">
-        <entry file="remoteDeploymentFS://&lt;371e2ea7-a45d-4baa-8d34-0b2311838603&gt;/cloudclass/MyModel/views.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyModel/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="615" column="22" lean-forward="true" selection-start-line="615" selection-start-column="22" selection-end-line="615" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="196">
+              <caret line="125" column="6" selection-start-line="125" selection-start-column="6" selection-end-line="125" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="true" current-in-tab="false">
-        <entry file="remoteDeploymentFS://&lt;371e2ea7-a45d-4baa-8d34-0b2311838603&gt;/cloudclass/MyModel/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-            </state>
-          </provider>
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyModel/tests.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cloudclass/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="55" column="28" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="28" />
+            <state relative-caret-position="360">
+              <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
               <folding>
                 <element signature="e#634#666#0" expanded="true" />
               </folding>
@@ -123,6 +117,7 @@
       <find>.values()[0]</find>
       <find>Scor</find>
       <find>login</find>
+      <find>seat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,11 +128,11 @@
       <list>
         <option value="$PROJECT_DIR$/User/models.py" />
         <option value="$PROJECT_DIR$/MyModel/json_utils.py" />
-        <option value="$PROJECT_DIR$/MyModel/models.py" />
-        <option value="$PROJECT_DIR$/cloudclass/urls.py" />
         <option value="&lt;371e2ea7-a45d-4baa-8d34-0b2311838603&gt;/cloudclass/cloudclass/settings.py" />
         <option value="$PROJECT_DIR$/cloudclass/settings.py" />
         <option value="&lt;371e2ea7-a45d-4baa-8d34-0b2311838603&gt;/cloudclass/MyModel/views.py" />
+        <option value="$PROJECT_DIR$/MyModel/models.py" />
+        <option value="$PROJECT_DIR$/cloudclass/urls.py" />
         <option value="$PROJECT_DIR$/MyModel/views.py" />
       </list>
     </option>
@@ -152,10 +147,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="364" />
-    <option name="y" value="14" />
-    <option name="width" value="974" />
-    <option name="height" value="1040" />
+    <option name="x" value="2194" />
+    <option name="y" value="36" />
+    <option name="width" value="960" />
+    <option name="height" value="999" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -163,7 +158,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,10 +197,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -215,7 +210,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -310,19 +305,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50053304" side_tool="true" weight="0.15359478" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="7" sideWeight="0.49946696" weight="0.22682661" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24863686" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.31952018" />
-      <window_info anchor="right" id="Remote Host" order="3" visible="true" weight="0.19669509" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13326226" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35102925" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.312026" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14552239" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -331,10 +324,12 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.19669509" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="7" sideWeight="0.49946696" weight="0.22682661" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
@@ -345,6 +340,107 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cloudclass/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="28" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyModel/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16821">
+          <caret line="623" selection-start-line="623" selection-end-line="623" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloudclass/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="28" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyModel/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16713">
+          <caret line="623" selection-start-line="623" selection-end-line="623" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloudclass/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="28" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyModel/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16686">
+          <caret line="618" column="20" selection-start-line="618" selection-start-column="20" selection-end-line="618" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloudclass/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="28" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyModel/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16578">
+          <caret line="618" column="20" lean-forward="true" selection-start-line="618" selection-start-column="20" selection-end-line="618" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
@@ -614,24 +710,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyModel/json_utils.py" />
-    <entry file="file://$PROJECT_DIR$/MyModel/models.py">
+    <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="90" column="6" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
+        <state relative-caret-position="756">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloudclass/settings.py">
+    <entry file="file://$PROJECT_DIR$/MyModel/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyModel/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        <state relative-caret-position="196">
+          <caret line="125" column="6" selection-start-line="125" selection-start-column="6" selection-end-line="125" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloudclass/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="28" />
+        <state relative-caret-position="360">
+          <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
           <folding>
             <element signature="e#634#666#0" expanded="true" />
           </folding>
@@ -640,8 +739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyModel/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="618" column="20" lean-forward="true" selection-start-line="618" selection-start-column="20" selection-end-line="618" selection-end-column="20" />
+        <state relative-caret-position="335">
+          <caret line="763" column="25" selection-start-line="763" selection-start-column="25" selection-end-line="763" selection-end-column="25" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>

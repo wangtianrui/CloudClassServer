@@ -103,3 +103,29 @@ class MySource(models.Model):
     download_count = models.IntegerField(default=0)
     source_name = models.CharField(max_length=100, null=True)
     uper_name = models.CharField(max_length=20, null=True)
+
+
+class CourseModel(models.Model):
+    id = models.CharField(max_length=50, primary_key=True)
+    section = models.IntegerField()
+    week = models.IntegerField()
+    span = models.IntegerField()
+    user_id = models.CharField(max_length=20)
+    course_name = models.CharField(max_length=40)
+    classroom_number = models.CharField(max_length=20)
+
+
+class Power(models.Model):
+    student_id = models.CharField(max_length=20)
+    level = models.IntegerField()
+    status = models.CharField(max_length=20)
+    time = models.IntegerField()
+    course_id = models.CharField(max_length=20)
+
+
+class Seat(models.Model):
+    id = models.CharField(max_length=50, primary_key=True)
+    row = models.IntegerField()
+    col = models.IntegerField()
+    courseId = models.CharField(max_length=20)
+    studentId = models.CharField(max_length=20)

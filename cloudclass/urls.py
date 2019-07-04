@@ -54,5 +54,12 @@ urlpatterns = [
     re_path(r'scoreAnswer/$', view.scoreAnswer),
     re_path(r'addScore/$', view.addScore),
     re_path(r'get_mean_score/$', view.get_mean_score),
+    re_path(r'add_courseTable/$', view.add_courseTable),
+    re_path(r'get_courseTable/$', view.get_courseTable),
+    re_path(r'deleteCourseTable/$', view.deleteCourseTable),
+    re_path(r'addPower/$', view.addPower),
+    re_path(r'getPower/$', view.getPower),
+    re_path(r'autoSeat/$', view.autoSeat),
+    re_path(r'getSeat/$', view.getSeat),
 
 ]
