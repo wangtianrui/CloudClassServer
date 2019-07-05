@@ -761,8 +761,8 @@ def autoSeat(request):
         i = 0
         j = len(L) - 1
         flag = True
-        for col in range( max_col):
-            for row in range( max_row):
+        for col in range(max_col):
+            for row in range(max_row):
                 if i > j:
                     break
                 try:
@@ -825,3 +825,105 @@ def getMeanScore(id):
     if num == 0:
         num = 1
     return sum / num
+
+
+from django.shortcuts import render
+
+
+# ------------------------------html-------------------------
+
+@csrf_exempt
+def admin_hello(request):
+    return render(request, 'hello.html')
+
+
+@csrf_exempt
+def admin_login(request):
+    if request.method == "POST":
+        id = request.POST.get("id")
+        password = request.POST.get("password")
+        print(request.POST.get("password"))
+        try:
+            admin = models.Admin.objects.get(id=id)
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": -1})
+        if password == admin.password:
+            return JsonResponse({"result": 1})
+        else:
+            return JsonResponse({"result": 0})
+
+
+@csrf_exempt
+def admin_signup(request):
+    if request.method == "POST":
+        id = request.POST.get("id")
+        password = request.POST.get("password")
+        try:
+            admin = models.Admin.objects.create(
+                id=id,
+                password=password
+            )
+            admin.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": 0})
+        return JsonResponse({"result": 1})
+
+
+@csrf_exempt
+def link_reg(request):
+    # print("register")
+    return render(request, 'register.html')
+
+
+@csrf_exempt
+def manager_home(request):
+    return render(request, 'home.html')
+
+
+import json
+
+
+@csrf_exempt
+def get_table(request):
+    if request.method == "GET":
+        table_name = request.GET.get("table_name")
+
+        if table_name == "User":
+            temp = models.User.objects.all().values()
+        if table_name == "Course":
+            temp = models.Course.objects.all().values()
+        if table_name == "Student2Course":
+            temp = models.Student2Course.objects.all().values()
+        if table_name == "Inform":
+            temp = models.Inform.objects.all().values()
+        if table_name == "HomeWork":
+            temp = models.HomeWork.objects.all().values()
+        if table_name == "Answer":
+            temp = models.Answer.objects.all().values()
+        if table_name == "Communication":
+            temp = models.Communication.objects.all().values()
+        if table_name == "CommunicaitonItem":
+            temp = models.CommunicaitonItem.objects.all().values()
+        if table_name == "Sign":
+            temp = models.Sign.objects.all().values()
+        if table_name == "StudentSign":
+            temp = models.StudentSign.objects.all().values()
+        if table_name == "Score":
+            temp = models.Score.objects.all().values()
+        if table_name == "MySource":
+            temp = models.MySource.objects.all().values()
+        if table_name == "CourseModel":
+            temp = models.CourseModel.objects.all().values()
+        if table_name == "Power":
+            temp = models.Power.objects.all().values()
+        if table_name == "Seat":
+            temp = models.Seat.objects.all().values()
+        values = []
+        for item in temp:
+            d = {}
+            for key in item:
+                d[key] = item[key]
+            values.append(d)
+        return render(request, "table.html", {"result": 1, "values": values})

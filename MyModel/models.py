@@ -129,3 +129,8 @@ class Seat(models.Model):
     col = models.IntegerField()
     courseId = models.CharField(max_length=20)
     studentId = models.CharField(max_length=20)
+
+
+class Admin(models.Model):
+    id = models.CharField(max_length=20, primary_key=True)
+    password = models.CharField(max_length=30)

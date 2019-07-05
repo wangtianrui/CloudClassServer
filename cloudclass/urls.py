@@ -62,4 +62,11 @@ urlpatterns = [
     re_path(r'autoSeat/$', view.autoSeat),
     re_path(r'getSeat/$', view.getSeat),
 
+    re_path(r'admin_hello/$', view.admin_hello),
+    re_path(r'manager_home/$', view.manager_home),
+    re_path(r'link_reg/$', view.link_reg),
+    re_path(r'admin_signup/$', view.admin_signup),
+    re_path(r'admin_log_in/$', view.admin_login),
+    re_path(r'get_table/$', view.get_table),
+
 ]

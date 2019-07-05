@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="zh-hans">
+
+<head>
+    <title>数据库管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/dashboard.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/responsive.css">
+
+</head>
+
+
+<body>
+
+    <!-- Container -->
+    <div id="container">
+
+        <!-- Content -->
+        <div id="content" class="colMS">
+
+            <h1 align="center">数据库管理</h1>
+
+            <div id="content-main">
+
+
+                <div class="app-MyModel module ">
+                    <table style="width: 100% " id="container_table">
+                        <caption>
+                            <a class="section">表</a>
+                        </caption>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+<script>
+    var nameList = ["User", "Course", "Student2Course", "Inform", "HomeWork", "Answer", "Communication",
+    "CommunicaitonItem","Sign", "StudentSign", "Score", "MySource", "CourseModel", "Power", "Seat"];
+    var containerTable = document.getElementById("container_table");
+    var tbody = document.createElement("tbody");
+    containerTable.appendChild(tbody);
+    for (const name in nameList) {
+        if (nameList.hasOwnProperty(name)) {
+            const element = nameList[name];
+            var tr = document.createElement("tr");
+
+            var th = document.createElement("th");
+            th.setAttribute("scope","row");
+            tr.appendChild(th);
+
+            var a_name = document.createElement("a")
+            a_name.innerHTML="<a href='/get_table/?table_name="+element+"'>"+element+"</a>";
+            // a_name.onclick(jump(this))
+            th.appendChild(a_name);
+
+            var td_add = document.createElement("td");
+            // td_add.innerHTML="增加";
+            td_add.className="addlink";
+            var a_add = document.createElement("a")
+            a_add.innerHTML="<a href='/"+element+"Add/'>增加</a>";
+            td_add.appendChild(a_add)
+
+            var td_edit = document.createElement("td");
+            // td_edit.innerHTML="修改"
+            td_edit.setAttribute("class","changelink");
+            var a_edit = document.createElement("a")
+            a_edit.innerHTML="<a href='/"+element+"Add/'>修改</a>";
+            td_edit.appendChild(a_edit)
+
+            tr.appendChild(td_add);
+            tr.appendChild(td_edit);
+            tr.setAttribute("class","model-student2course");
+            
+            tbody.appendChild(tr);
+        }
+         
+    }
+</script>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="zh-hans">
+<head>
+    <title>管理员</title>
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/login.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" login"
+      data-admin-utc-offset="28800">
+
+<!-- Container -->
+<div id="container">
+
+    <h2 align="center">注册</h2>
+    <!-- Content -->
+    <div id="content" class="colM">
+
+
+        <div id="content-main">
+
+
+            <form id="login-form"><input type="hidden">
+                <div class="form-row">
+
+                    <label class="required" for="id_username">用户名:</label> <input type="text" name="username" autofocus
+                                                                                  id="id_username" required>
+                </div>
+                <div class="form-row">
+
+                    <label class="required" for="id_password">密码:</label> <input type="password" name="password"
+                                                                                 required id="id_password">
+                    <input type="hidden" name="next" value="/manager/">
+                </div>
+
+
+                <div class="submit-row">
+
+                    <label>&nbsp;</label><input type="button" id="okbutton" onclick="register()" value="注册">
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+</div>
+<!-- END Container -->
+<script>
+    var button = document.getElementById("okbutton")
+
+    function register() {
+        var username = document.getElementById("id_username").value
+        var pwd = document.getElementById("id_password").value
+        console.log(username + pwd)
+        var data = new FormData();
+        data.append("id", username);
+        data.append("password", pwd);
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
+            }
+        });
+        xhr.open("POST", "/admin_signup/");
+        xhr.send(data);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+                var responseText = xhr.responseText;//返回结果
+
+                var obj = JSON.parse(responseText);
+                if (obj['result'] === 1) {
+                    window.location.href = "http://39.105.164.122/admin_hello/"
+                } else {
+                    window.alert("注册失败已有该账户")
+                }
+
+            }
+        }
+    }
+
+
+</script>
+
+</body>
+</html>
