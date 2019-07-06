@@ -1,7 +1,6 @@
 from django.forms.models import model_to_dict
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
 from . import models
 
 
@@ -880,9 +879,6 @@ def link_reg(request):
 @csrf_exempt
 def manager_home(request):
     return render(request, 'home.html')
-
-
-import json
 
 
 @csrf_exempt
