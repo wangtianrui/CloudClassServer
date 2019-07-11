@@ -86,13 +86,13 @@
 
                     var obj = JSON.parse(responseText);
                     if (obj['result'] === 1) {
-                        window.location.href = "http://39.105.164.122/manager_home"
+                        window.location.href = "http://39.105.164.122/admin/"
                     } else if (obj['result'] === 0) {
                         window.alert("密码错误")
                     } else {
                         window.alert("查无此账号")
                     } 
-                    
+
                 }
 
             }

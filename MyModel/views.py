@@ -738,6 +738,21 @@ def getPower(request):
         return JsonResponse({"result": -1})
 
 
+from sklearn.externals import joblib
+
+
+@csrf_exempt
+def analysis(request):
+    if request.method == "POST":
+        data = request.POST.get("data")
+        model = joblib.load("./logist.pkl")
+        # model = joblib.load()
+        predict = model.predict(data)
+        return JsonResponse({"result": 1, "values": predict})
+    else:
+        return JsonResponse({"result": -1})
+
+
 @csrf_exempt
 def autoSeat(request):
     if request.method == "POST":
